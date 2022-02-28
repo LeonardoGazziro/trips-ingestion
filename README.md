@@ -59,7 +59,7 @@ docker exec -it python poetry run create_50mi_file
 ### Tests
 This code can be used with 100mi rows or more, my test have 50mi.
 #### Results:
-![50mi-rows](/other/imgs/50mi-test.png) 
+![50mi-rows](/others/imgs/50mi-test.png) 
 
 Test machine:
 CPU: i7-9750H 2.6
@@ -79,4 +79,4 @@ a table in schema called operation, insert rows typed and create two views for
 similar trips and weekly trips.
 
 ## GCP sketch
-![GCP](/other/imgs/gcp-sketch.png) 
+![GCP](/others/imgs/gcp-sketch.png) 
