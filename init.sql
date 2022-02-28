@@ -1,0 +1,5 @@
+ALTER USER postgres PASSWORD '!2qwaszx';
+CREATE DATABASE trips;
+\connect trips;
+CREATE SCHEMA IF NOT EXISTS stage;
+CREATE SCHEMA IF NOT EXISTS operational;

@@ -1,0 +1,54 @@
+version: '3.8'
+services:
+  postgis:
+    container_name: postgres
+    image: "postgis/postgis:11-2.5-alpine"
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-q", "-d", "postgres", "-U", "postgres" ]
+      timeout: 45s
+      interval: 10s
+      retries: 10
+    restart: always
+    ports:
+      - "5433:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - postgres-compose-network
+
+  pgadmin-compose:
+    container_name: pg-admin
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "postgres@gmail.com"
+      PGADMIN_DEFAULT_PASSWORD: "postgres"
+    ports:
+      - "16543:80"
+    depends_on:
+      - postgis
+    networks:
+      - postgres-compose-network
+
+  python-38:
+    container_name: python
+    image: python:3.8
+    command: bash -c "
+      pip install poetry
+      && poetry install --no-root --no-dev
+      && cp run-poetry.sh /
+      && tail -f /dev/null"
+    volumes:
+      - .:/codes
+    working_dir: /codes
+    depends_on:
+      - postgis
+    networks:
+      - postgres-compose-network
+
+networks:
+  postgres-compose-network:
+    driver: bridge
+

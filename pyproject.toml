@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "trips"
+version = "0.1.0"
+description = "Ingestion CSV to Layer Raw"
+authors = ["Leo <leogazziro@gmail.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+pandas = "^1.4.1"
+dynaconf = "^3.1.7"
+psycopg2 = "^2.9.3"
+SQLAlchemy = "^1.4.31"
+
+[tool.poetry.dev-dependencies]
+
+[tool.poetry.scripts]
+trips = "main:trips_ingestion"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
