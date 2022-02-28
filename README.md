@@ -51,7 +51,7 @@ docker exec -it python poetry run trips
 
 ## Scalability
 ### Create CSV file
-For create CSV with 50mi rows use the python code in /aux_scripts.
+For create CSV with 50mi rows use the python code in /other/create_csv.py.
 ```commandline
 docker exec -it python poetry run create_50mi_file
 ```
