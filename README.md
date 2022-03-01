@@ -1,5 +1,5 @@
 # Trips Ingestion
-Code create to ingest CSV file with trips to PostgreSQL, process table and 
+Code created to ingest CSV file with trips to PostgreSQL, process table and 
 create views.
 
 ## Tecnologies
@@ -35,7 +35,7 @@ docker-compose up
 * Add a new server using:
   * Hostname: postgis
   * User:postgres
-  * Password:postgres
+  * Password:!2qwaszx
 
 ### Process CSV file:
 This command will start the ingestion process. 
@@ -47,11 +47,11 @@ docker exec -it python poetry run trips
 * Automate process to read csv and save in Postgres, using Python, Pandas and SQLAlchemy.
 * Create a view to get similar trips (2.5 kilometers radius) from origin, destination and hour of day
 * Create view to get the weekly average trips by region 
-* After process file it will be moved to a folder processed
+* After process file it will be moved to a folder called "processed"
 
 ## Scalability
 ### Create CSV file
-For create CSV with 50mi rows use the python code in /other/create_csv.py.
+To create CSV with 50mi rows use the python code in /other/create_csv.py.
 ```commandline
 docker exec -it python poetry run create_50mi_file
 ```
@@ -72,10 +72,10 @@ When Python script trips is called, it will load CSV file (/input_files) using
 Pandas in chunks of 5000000 row, and save in Postgres in chunks of 10000 row.
 The chunk size can be changed on .secrets.toml file.
 
-After read and insert data in Postgres the file will be coped to a folder called processed.
+After reading and inserting data in Postgres the file will be coped to a folder called processed.
 
-The next step is execute SQL script file (/SQL/create_trips_log.sql), this sql will create
-a table in schema called operation, insert rows typed and create two views for 
+The next step is to execute the SQL script file (/SQL/create_trips_log.sql), this sql will create
+a table in schema called operation, insert typed rows and create two views for 
 similar trips and weekly trips.
 
 ## GCP sketch
